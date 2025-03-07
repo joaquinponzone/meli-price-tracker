@@ -7,7 +7,7 @@ export default function Home() {
     <main className="container mx-auto px-4 py-8">
       <div className="max-w-2xl mx-auto">
         <div className="flex items-center justify-between mb-8">
-          <h1 className="text-3xl font-bold">Meli Sentinel</h1>
+          <h1 className="text-3xl font-bold">Meli Price Tracker</h1>
           <Link 
             href="/reports"
             className="flex items-center gap-2 text-sm text-neutral-400 hover:text-neutral-200"

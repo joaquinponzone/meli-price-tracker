@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!url.startsWith('https://articulo.mercadolibre.com.ar/')) {
+    if (!url.includes('mercadolibre.com.ar')) {
       await logger.log({
         url,
         success: false,
@@ -64,7 +64,24 @@ export async function POST(request: NextRequest) {
       ip,
     });
     
-    return NextResponse.json(product);
+    // Create a properly structured report
+    const report = {
+      timestamp: new Date().toISOString(),
+      product: {
+        title: product.title || 'Unknown Product',
+        url: product.url,
+        price: product.price,
+        currency: product.currency || 'ARS',
+        available: product.available || false,
+        delivery: product.delivery || { home: null, pickup: null }
+      }
+    };
+
+    return NextResponse.json({ 
+      success: true, 
+      data: product,
+      report // Send the structured report
+    });
   } catch (error) {
     if (error instanceof ProductNotFoundError) {
       await logger.log({

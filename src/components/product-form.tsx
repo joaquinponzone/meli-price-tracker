@@ -3,6 +3,52 @@
 import { ScanSearchIcon, Loader2Icon } from "lucide-react";
 import { useState } from "react";
 import type { ScrapedProduct } from "@/lib/scraper";
+import { useLocalStorageReports } from "@/hooks/use-local-storage-reports";
+
+interface ScanProductResponse {
+  success: boolean,
+  data: {
+      url: string,
+      price: number,
+      currency: string,
+      title: string,
+      available: boolean,
+      delivery: {
+          home: {
+              type: string,
+              isFreeDelivery: boolean,
+              date: string | null
+          },
+          pickup: {
+              type: string,
+              isFreeDelivery: boolean,
+              date: string | null
+          }
+      }
+  },
+  report: {
+      timestamp: string,
+      product: {
+          title: string,
+          url: string,
+          price: number,
+          currency: string,
+          available: boolean,
+          delivery: {
+              home: {
+                  type: string,
+                  isFreeDelivery: boolean,
+                  date: string | null
+              },
+              pickup: {
+                  type: string,
+                  isFreeDelivery: boolean,
+                  date: string | null
+              }
+          }
+      }
+  }
+}
 
 function formatPrice(price: number, currency: string): string {
   return new Intl.NumberFormat('es-AR', {
@@ -16,6 +62,7 @@ export function ProductForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [product, setProduct] = useState<ScrapedProduct | null>(null);
+  const { addReport } = useLocalStorageReports();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -38,8 +85,10 @@ export function ProductForm() {
         throw new Error(data.error || 'Failed to fetch product');
       }
 
-      const data = await response.json();
-      setProduct(data);
+      const data: ScanProductResponse = await response.json();
+      
+      addReport(data.report);
+      setProduct(data.report.product);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An unexpected error occurred');
     } finally {
@@ -134,11 +183,6 @@ export function ProductForm() {
                   </p>
                   {product.delivery.home.date && (
                     <p>Arrives: {product.delivery.home.date.toUpperCase()}</p>
-                  )}
-                  {product.delivery.home.timeRemaining && (
-                    <p className="text-xs text-green-600">
-                      {product.delivery.home.timeRemaining}
-                    </p>
                   )}
                 </div>
               </div>

@@ -2,21 +2,30 @@ import axios from 'axios';
 import * as cheerio from 'cheerio';
 
 export interface DeliveryInfo {
-  type: 'delivery' | 'pickup' | null;
+  type: string;
   isFreeDelivery: boolean;
   date: string | null;
   timeRemaining?: string;
 }
 
 export interface ScrapedProduct {
-  price: number;
-  currency: string;
-  title?: string;
-  available?: boolean;
+  title: string,
+  url: string,
+  price: number,
+  currency: string,
+  available: boolean,
   delivery: {
-    home: DeliveryInfo;
-    pickup: DeliveryInfo;
-  };
+      home: {
+          type: string,
+          isFreeDelivery: boolean,
+          date: string | null
+      },
+      pickup: {
+          type: string,
+          isFreeDelivery: boolean,
+          date: string | null
+      }
+  }
 }
 
 export interface ScrapingError {
@@ -115,9 +124,10 @@ export async function scrapeProduct(url: string): Promise<ScrapedProduct> {
     }
 
     return {
+      url,
       price,
       currency,
-      title,
+      title: title || '',
       available,
       delivery: {
         home: homeDelivery,

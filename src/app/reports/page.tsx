@@ -1,12 +1,13 @@
+'use client';
 
-import { FileLogger } from "@/lib/logger/file-logger";
+
 import { ReportsTable } from "@/components/reports-table";
 import Link from "next/link";
 import { ArrowLeftIcon } from "lucide-react";
+import { useLocalStorageReports } from "@/hooks/use-local-storage-reports";
 
-export default async function LogsPage() {
-  const logger = new FileLogger();
-  const logs = await logger.getLogs();
+export default function LogsPage() {
+  const { reports, deleteReport } = useLocalStorageReports();
   
   return (
     <main className="container mx-auto px-4 py-8">
@@ -20,11 +21,10 @@ export default async function LogsPage() {
             <h1 className="text-3xl font-bold">Scannings Reports</h1>
           </span>
           <p className="text-sm text-neutral-400">
-            Total watchs: {logs.length}
+            Total watchs: {reports.length}
           </p>
         </div>
-        
-        <ReportsTable logs={logs} />
+        <ReportsTable reports={reports} onDelete={deleteReport} />
       </div>
     </main>
   );

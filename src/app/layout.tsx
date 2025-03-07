@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Meli Sentinel",
+  title: "Meli Price Tracker",
   description: "Scrape the price of a product.",
 };
 
