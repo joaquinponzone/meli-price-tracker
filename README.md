@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Meli Sentinel
 
-## Getting Started
+A modern web application for monitoring and managing Mercado Libre listings, built with Next.js 15, TypeScript, and React 19.
 
-First, run the development server:
+## 🚀 Features
 
+- Real-time Mercado Libre listing monitoring
+- Automated price tracking with web scraping capabilities
+- Modern and responsive UI
+- Fast and efficient with Turbopack
+
+## 🛠 Tech Stack
+
+### Frontend
+- Next.js 15.2.1 with Turbopack
+- React 19.0.0
+- TypeScript
+- Tailwind CSS
+- Lucide React for icons
+- Axios for HTTP requests
+- Cheerio for web scraping
+
+## 📋 Prerequisites
+
+- Node.js 20.x or later
+- npm or bun package manager
+
+## 🔧 Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/your-username/meli-sentinel.git
+cd meli-sentinel
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+bun install
+```
+
+3. Set up environment variables:
+```bash
+cp .env.example .env.local
+```
+Edit `.env.local` with your configuration.
+
+## 🚀 Development
+
+Run the development server with Turbopack:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 # or
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📦 Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# Development with Turbopack
+npm run dev
+# or
+bun dev
 
-## Learn More
+# Production build
+npm run build
+# or
+bun run build
 
-To learn more about Next.js, take a look at the following resources:
+# Start production server
+npm run start
+# or
+bun start
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Lint code
+npm run lint
+# or
+bun run lint
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🏗 Project Structure
 
-## Deploy on Vercel
+```
+meli-sentinel/
+├── app/                    # Next.js app directory
+│   ├── api/               # API routes
+│   ├── components/        # React components
+│   └── lib/               # Utility functions
+├── public/                # Static assets
+└── types/                # TypeScript type definitions
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📄 License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👥 Authors
+
+- Your Name - Initial work - [Your GitHub](https://github.com/yourusername)
+
+## 🙏 Acknowledgments
+
+- [Next.js](https://nextjs.org/)
+- [React](https://react.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Lucide Icons](https://lucide.dev/)
+- [Cheerio](https://cheerio.js.org/)
