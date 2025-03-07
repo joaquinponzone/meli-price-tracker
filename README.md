@@ -1,4 +1,4 @@
-# Meli Sentinel
+# Meli Price Tracker
 
 A modern web application for monitoring and managing Mercado Libre listings, built with Next.js 15, TypeScript, and React 19.
 
